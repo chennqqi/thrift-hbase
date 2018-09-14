@@ -43,7 +43,7 @@ func (h *HbaseClient) Put(tableName, rowKey string, data map[string]string) erro
 	values := []hb.Text{}
 	for k, v := range data {
 		columns = append(columns, []byte(k))
-		values = append(values, []byte(string))
+		values = append(values, []byte(v))
 	}
 	_, err := h.Append(defaultCtx, &hb.TAppend{
 		Table:   []byte(tableName),
