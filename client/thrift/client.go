@@ -32,7 +32,7 @@ func Open(host, port string) Factory {
 	}
 }
 
-func (h *HbaseClient) Put(tableName, rowKey string, data map[string][]byte) error {
+func (h *HbaseClient) Put(tableName, rowKey string, data map[string]string) error {
 	if len(tableName) <= 0 || len(rowKey) <= 0 {
 		return errors.New("tableName or rowKey is nil")
 	}
@@ -43,7 +43,7 @@ func (h *HbaseClient) Put(tableName, rowKey string, data map[string][]byte) erro
 	values := []hb.Text{}
 	for k, v := range data {
 		columns = append(columns, []byte(k))
-		values = append(values, v)
+		values = append(values, []byte(string))
 	}
 	_, err := h.Append(defaultCtx, &hb.TAppend{
 		Table:   []byte(tableName),
